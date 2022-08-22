@@ -33,10 +33,12 @@ with gr.Blocks() as demo:
         name1 = gr.Dropdown(area_options,label="Location")
         
     with gr.Row():
-        submit_btn = gr.Button("Submit",width=50)
+        submit_btn = gr.Button("Submit")
+        clear_btn = gr.Button("Clear")
         
     output = gr.DataFrame(label="Restaurants",wrap=True)
     
     submit_btn.click(fn=cuisine, inputs=[name,name1], outputs=output)
+    clear_btn.click(None,inputs=[],outputs=output, _js="() => (null)\n")
     
 demo.launch()
